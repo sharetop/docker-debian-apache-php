@@ -22,14 +22,15 @@ RUN rm -rf /var/www/html \
 ## 准备源码编译，先安装必要的工具
 RUN apt-get install -y autoconf gcc make --no-install-recommends
 
-##  以下两段是分别安装mongodb和redis的操作
+##  以下通过软链启用部分PHP内置的模块
 RUN cd /etc/apache2/mods-enabled \
     && ln -s ../mods-available/rewrite.load rewrite.load \
     && ln -s ../mods-available/authz_groupfile.load authz_groupfile.load \
     && ln -s ../mods-available/reqtimeout.load reqtimeout.load \
     && ln -s ../mods-available/reqtimeout.conf reqtimeout.conf \
     && ln -s ../mods-available/headers.load headers.load
-
+    
+##  以下两段是分别安装mongodb和redis的操作
 COPY mongo-1.6.13.tgz /tmp/mongo-1.6.13.tgz
 RUN cd /tmp \
     && tar zxvf mongo-1.6.13.tgz \
