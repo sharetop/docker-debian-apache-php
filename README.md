@@ -1,3 +1,7 @@
+# 执行命令如下：
+
+docker run -it --name mywebapp -p 8801:80 -v /home/yancheng/webapp:/var/www/html debian/apache-php:0.1.1
+
 # Dockerfile 文件说明如下：
 
 ## 源于debian:latest，这是一个干净的Debian系统
